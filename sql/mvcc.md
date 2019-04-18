@@ -1,5 +1,4 @@
-# SQL学习笔记
-## InnoDB的mvcc
+# InnoDB的MVCC
 mvcc可以理解为java中的多版本
 为实现对应的功能他为每行记录都实现了三个隐藏字段
 
