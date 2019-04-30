@@ -1,0 +1,32 @@
+{
+  "log": {
+    "access": "E:/v2ray-windows-64/log/access.log",
+    "error": "E:/v2ray-windows-64/log/error.log",
+    "loglevel": "warning"
+  },
+  "inbound": {
+    "port": 1080,
+    "listen": "127.0.0.1",
+    "protocol": "socks",
+    "settings": {
+      "udp": true
+    }
+  },
+  "outbound": {
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [
+        {
+          "address": "www.baidu.com",
+          "port": 16823,
+          "users": [
+            {
+              "id": "d31a5619-7246-496f-b3d2-5ec35e6054a1",
+              "alterId": 64
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
