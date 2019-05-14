@@ -1,4 +1,5 @@
 # redis常用数据结构使用
+基于redis的抽奖活动经常是针对一些秒杀类的活动
 
 ## 1. String
 按照： XXXX:XXXX:XXXX的格式拼接key
