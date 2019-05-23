@@ -3,6 +3,14 @@
 
 ## 1. String
 按照： XXXX:XXXX:XXXX的格式拼接key
+由于redis是单线程模型，天然是线程安全的，这使得INCR/DECR命令非常适合实现高并发场景下的精确控制：* 库存控制
+>设置库存：SET inv:remain "100"
+扣减库存+余量校验：DECR inv:remain
+
+* 自增序列的实现
+> 设置序列起始值：SET sequence "10000"
+获取一个序列：INCR sequence
+获取一批序列：INCRBY sequence 100
 
 ## 2. hashMap
 一般用于分期奖池的分期信息存储和检索
@@ -36,3 +44,8 @@ public static double calcRankFactor(LocalDateTime activityStart, LocalDateTime o
     return (1 - (pastMillis+1)*100000000d/Long.MAX_VALUE);
 }
 ```
+
+
+
+参考文档：
+https://www.toutiao.com/i6691159847691354638/

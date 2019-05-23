@@ -94,3 +94,4 @@ MVCC并非无处可用，对一些一致性要求不高和对单一数据的操�
 
 
 参考文章：[InnoDB中MVCC](http://www.360doc.com/content/14/0821/09/12904276_403505950.shtml)
+https://www.toutiao.com/i6692338867082625540/
