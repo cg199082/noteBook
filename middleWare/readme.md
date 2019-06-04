@@ -7,6 +7,7 @@
 ## zookeeper学习重点
 1. 分布式一致性cap
 2. 选举机制
+zab paxos算法
 
 ## MQ学习重点
 1. 如何保证一致性
