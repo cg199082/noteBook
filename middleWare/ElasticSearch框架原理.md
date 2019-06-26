@@ -34,4 +34,47 @@ ElasticSearch是通过Luncene的倒排索引技术实现比关系型数据库更
 
 ## 如何联合索引查询
 age = 18 and gender = ‘女’  
-首先过滤条件age = 18的过程是从term index找到18的term dictionary的大概位置，然后再从term dictionary里精确地找到这个18的term，然后得到posting list或者一个指向posting list位置的指针。然后在查询gender = ‘女’的posting list。最后把这两个post listing 进行与操作。  
+首先过滤条件age = 18的过程是从term index找到18的term dictionary的大概位置，然后再从term dictionary里精确地找到这个18的term，然后得到posting list或者一个指向posting list位置的指针。然后在查询gender = ‘女’的posting list。最后把这两个post listing 进行”与“操作。  
+这个理论上的“与”操作可不容易，在mysql中，如果你给Age和Gender两个字段都建立了索引，查询的时候只会选择其中最具有Selective价值得字段进行查询，然后另外一个条件是在遍历行的过程中在内存中计算之后过滤掉。在ElasticSearch中则有以下两种实现联合索引的方式：  
+* 使用Skip List数据结构。同时遍历Gender和Age的Posting List，互相Skip；
+* 使用BitSet数据结构，对Gender和Age两个Filter分别求出Bitset，对两个Bitset做AND操作。
+
+PostGreSQL从8.4版本开始支持通过Bitmap联合使用两个索引，就是利用了Bitset数据结构来做到的。当然一些商业的关系型数据库也支持类似的联合索引的功能。Elasticsearch支持以上两种联合索引方式，如果查询的Filter缓存到了内存中（以Bitset的形式），那么合并就是两个Bitset的AND。如果查询的Filter没有缓存，那么就有Skip List的方式去遍历两个On Disk的Posting List。  利用Skip List合并的图示如下：  
+
+![](./source/elasticSearch_003.jpg)  
+
+以上是三个Posting List。我们现在需要把他们用AND的关系合并，得出Posting List的交集。首先选择最短的Posting List，然后从小到大遍历。便利的过程可以跳过一些元素，比如我们遍历到绿色的13的时候，就可以跳过蓝色的3了，因为3比13要小。整个遍历过程如下：  
+```
+Next -> 2
+
+Advance(2) -> 13
+
+Advance(13) -> 13
+
+Already on 13
+
+Advance(13) -> 13 MATCH!!!
+
+Next -> 17
+
+Advance(17) -> 22
+
+Advance(22) -> 98
+
+Advance(98) -> 98
+
+Advance(98) -> 98 MATCH!!!
+```
+
+最后得出的交集是[13,98]，所需的时间比完整遍历三个Posting List要快的多。但是前提是每个List需要指出Advance这个操作，快速的移动指向的位置。Skip List数据结构刚好满足这样的功能。  
+![](./source/elasticSearch_003.png)  
+
+
+
+
+
+
+
+
+参考文档：  
+https://www.infoq.cn/article/database-timestamp-02/?utm_source=infoq&utm_medium=related_content_link&utm_campaign=relatedContent_articles_clk
