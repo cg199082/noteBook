@@ -9,3 +9,6 @@ Linux探秘之用户态与内核态：https://www.cnblogs.com/bakari/p/5520860.h
 
 维基线程：https://zh.wikipedia.org/wiki/%E7%BA%BF%E7%A8%8B
 【死磕Java并发】—–J.U.C之AQS（一篇就够了）：https://juejin.im/entry/5ae02a7c6fb9a07ac76e7b70
+LockSupport中的park与unpark原理：https://juejin.im/post/5c041bae51882516eb562f15
+LockSupport原理分析 ：https://kkewwei.github.io/elasticsearch_learning/2018/11/10/LockSupport%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/
+http://luojinping.com/2015/06/19/AbstractQueuedSynchronizer%E8%AF%A6%E8%A7%A3/
