@@ -109,5 +109,7 @@ MVCC并非无处可用，对一些一致性要求不高和对单一数据的操�
  * 满足恢复和复制机制的需要：在一个事务未提交前，其他并发事务不能插入满足其锁定条件的任何记录，也就是不允许出现幻读
 
 
-参考文章：[InnoDB中MVCC](http://www.360doc.com/content/14/0821/09/12904276_403505950.shtml)
-https://www.toutiao.com/i6692338867082625540/
+参考文章：  
+Mysql中MVCC的使用及原理详解：https://www.toutiao.com/i6598144717525877256/  
+InnoDB中MVCC：http://www.360doc.com/content/14/0821/09/12904276_403505950.shtml  
+掌握MySQL的锁机制，面试不心慌！：https://www.toutiao.com/i6692338867082625540/
