@@ -114,5 +114,6 @@ Netty其实本质上就是Reactor模式的实现，Selector做为多路复用器
 
 
 参考文档：  
-高性能：《一遍文章带你看懂 Netty世界》：
-https://www.toutiao.com/i6706828472330748419/
+高性能：《一遍文章带你看懂 Netty世界》：https://www.toutiao.com/i6706828472330748419/  
+彻底理解Netty，这一篇文章就够了：https://juejin.im/post/5bdaf8ea6fb9a0227b02275a  
+探秘Netty7：一篇文章，读懂Netty的高性能架构之道:https://blog.csdn.net/a724888/article/details/80771791
