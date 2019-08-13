@@ -206,3 +206,6 @@ public static void fileReadWithByteBuffer(File file) {
 }
 
 ```
+
+参考文档：  
+NIO效率高的原理之零拷贝与直接内存映射：https://www.toutiao.com/i6722656646830490126/?group_id=6722656646830490126
