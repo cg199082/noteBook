@@ -1,6 +1,10 @@
 # 【死磕Java并发】—–J.U.C之AQS（一篇就够了）
 参考文档：https://mp.weixin.qq.com/s/-swOI_4_cxP5BBSD9wd0lA  
 
+汇总后的调用流程图：  
+
+![](./source/aqs_all.png)
+
 #AQS简介
 java的内置锁一直都是备受争议的，在JDK1.6之前Synchronized这个重量级锁其性能一直较为低下，虽然在1.6之后，进行了大量的锁优化策略，但是与Lock相比Synchronized还是存在一些缺陷：虽然Synchronized提供了便捷性的隐式获取锁释放锁机制（基于JVM机制），但是它却缺少了获取锁与释放锁的可操作性，可中断，超时获取锁，且他为独占式在高并发场景下性能大打折扣。  
 在介绍Lock之前，我们需要先熟悉一下一个非常重要的组件，掌握了该组件JUC包下面很多问题都不在是问题了，该组件就是AQS。  
