@@ -4,6 +4,7 @@
 Spring Boot启动过程源码分析：https://www.cnblogs.com/davidwang456/p/9172685.html  
 spring加载流程之AnnotatedBeanDefinitionReader：https://blog.csdn.net/yu_kang/article/details/88068619  
 spring加载流程之ClassPathBeanDefinitionScanner：https://blog.csdn.net/yu_kang/article/details/88075447
+springParser调用过程：https://blog.csdn.net/u014723529/article/details/41958841
 
 相关流程图：  
 
