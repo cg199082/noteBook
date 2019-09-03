@@ -1,5 +1,7 @@
 # AQS周边类原理
-参考文档：https://www.cnblogs.com/zaizhoumo/p/7782941.html
+参考文档：
+ReentrantReadWriteLock：https://www.cnblogs.com/zaizhoumo/p/7782941.html
+CyclicBarrier：https://blog.csdn.net/qq_38293564/article/details/80558157
 
 # ReentrantLock
 ReentrantLock实现了两种锁方式，默认使用的是非公平锁。 
@@ -12,7 +14,7 @@ ReentrantLock实现了两种锁方式，默认使用的是非公平锁。
 
 # ReentrantReadWriteLock
 ReentrantReadWriteLock是lock的另一种实现方式，因为ReentrantLock是排它锁，同一时间只允许一个线程访问，而ReentrantReadWriteLock允许多个读线程同时访问，但不允许写线程和读线程，写线程和写线程同时访问。相对于排它锁提高了并发性能。  
-ReentrantReadWriteLock内部维护了两个锁，一个用于读，有一个用于写。ReentrantReadWriteLock支持以下功能：  
+ReentrantReadWriteLock内部维护了两个锁，一个用于读，一个用于写。ReentrantReadWriteLock支持以下功能：  
 1. 支持公平和非公平的获取锁的方式。
 2. 支持可重入，读线程在获取了读锁后还可以在获取读锁，写线程在获取写锁后还可以获取写锁，或者可以再次获取读锁
 3. 支持写锁降级为读锁，但不支持读锁升级为写锁
@@ -319,6 +321,20 @@ permits同样存放在AQS的state中
 * release()：  
 调用AQS.releaseShared反调Sync.tryReleaseShared对state进行加操作，并返回true，继续调用AQS.doReleaseShared()循环遍历Node链表进行unpark操作。
 
+
 # CountDownLatch
 CountDownLatch的阻塞条件数量存放在AQS的state中，CountDownLatch通过实现AQS中的tryAcquireShared，tryReleaseShared方法来实现阻塞和释放的判断(内部实现就是查询或者更改state值)。并具体通过调用AQS的doAcquireSharedInterruptibly，doReleaseShared来最终实现阻塞和解禁。
 
+
+# CyclicBarrier
+CyclicBarrier的实现原理和CountDownLatch完全不同，CountDownLatch是通过更改AQS的中的状态标识和实现其中的共享式判定逻辑来实现阻塞和解禁，而CyclicBarrier则是通过组合ReentrantLock和Condition两个类来实现阻塞等待的效果。
+* ReentrantLock：负责线程以独占的方式的进入doAwait方法进行阻塞
+* Condition：当线程进入doAwait后如果不满足唤醒条件则阻塞到Condition上，如果发现阻塞的线程数量满足设定值时，即满足唤醒条件，则将所有阻塞在Condition上的线程全部唤醒。
+* 当正常唤醒全部阻塞在Condition的线程后，后续逻辑同时会调用相应的回调方法并重置CyclicBarrier为下一代继续使用。
+
+* CyclicBarrier(int parties, Runnable barrierAction)  
+设置阻塞量和阻塞唤醒时可调用的Runnable事件，parties和barrierAction都保存在CyclicBarrier中不涉及AQS变量的修改。
+* dowait(boolean timed, long nanos)  
+线程独占式进入，对等待标识数量count做减操作，通过判断count==0来确认是否可以唤醒所有线程，是则唤醒所有等待线程、调用回调、对CyclicBarrier换代；否则将当前线程阻塞到Condition上。
+* nextGeneration()  
+唤醒所有阻塞在Condition上上的线程，重置count标识，更新下一代。
