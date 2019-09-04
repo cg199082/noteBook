@@ -1,9 +1,12 @@
 # RabbitMQ消息发送确认与消息接收确认
 
 参考文档：  
+RabbitMQ消息可靠性分析：https://www.jianshu.com/p/ea04ee9504c3
 RabbitMQ消息发送确认与消息接收确认：https://www.jianshu.com/p/2c5eebfd0e95
 RabbitMQ基本概念：https://www.jianshu.com/p/25816ae3d8db
 RabbitMQ消息确认机制：https://www.toutiao.com/i6732016280859050500/
+RabbitMQ整合Spring Booot【死信队列】：https://www.cnblogs.com/toov5/p/10288260.html
+
 
 RabbitMQ为了确保消息一定能发送到Broker，RabbitMQ有两种可实现方式：  
 1. RabbitMQ的事务方式
