@@ -1,4 +1,7 @@
 # Zookeeper中的ZAB协议理解
+参考文档：  
+https://blog.csdn.net/junchenbb0430/article/details/77583955
+
 ## ZAB协议
 1. Zab协议是专门为Zookeeper实现分布式协调功能而设计的。Zookeeper主要是根据Zab协议来实现分布式系统数据一致性。
 2. Zookeeper根据Zab协议建立了主备模型，完成Zookeeper集群中的数据同步。
@@ -57,5 +60,3 @@ Zab协议要求每个Leader都要经历三个阶段：发现，同步，广播
 ## Zookeeper设计目标
 采用Zab协议的最大目标就是建立一个高可用可扩展的分布式数据主备系统。即在任何时刻只要Leader发生宕机，都能保证分布式系统数据的可靠性和最终一致性。
 
-参考文档：  
-https://blog.csdn.net/junchenbb0430/article/details/77583955
