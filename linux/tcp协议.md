@@ -1,6 +1,8 @@
 # tcp协议
 参考文档：
-传输控制协议：https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE
+传输控制协议：https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE  
+一篇文章带你熟悉TCP/IP协议：https://juejin.im/post/5a069b6d51882509e5432656  
+深入浅出TCP/IP协议栈：https://www.cnblogs.com/onepixel/p/7092302.html
 
 传输控制协议tcp协议（Transmission Control Protocol）是一种面向连接的，可靠的，基于字节流的传输层通讯协议，由IETF的RFC 793定义。在简化的计算机OSI模型中，它完成第四层传输层所指定的功能。用户数据报协议（UDP）是同一层的另一个重要的协议。  
 在因特网协议族（Internet Protocol Suite）中，TCP层是位于IP层之上，应用层之下的中间层。不同主机的经常需要可靠的像管道一样的连接，但是IP层不提供这样的流机制，而是提供不可靠的包交换。  
