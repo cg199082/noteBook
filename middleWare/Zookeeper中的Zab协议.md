@@ -1,6 +1,7 @@
 # Zookeeper中的ZAB协议理解
 参考文档：  
-https://blog.csdn.net/junchenbb0430/article/details/77583955
+zookeeper中的ZAB协议理解：https://blog.csdn.net/junchenbb0430/article/details/77583955  
+ZooKeeper和ZAB协议：https://www.cnblogs.com/makelu/p/11123103.html
 
 ## ZAB协议
 1. Zab协议是专门为Zookeeper实现分布式协调功能而设计的。Zookeeper主要是根据Zab协议来实现分布式系统数据一致性。

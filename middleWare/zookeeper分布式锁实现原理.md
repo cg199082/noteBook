@@ -1,6 +1,11 @@
-# zookeeper选举机制分析
+# zookeeper分布式锁
+参考文档：  
+zookeeper基础：https://www.w3cschool.cn/zookeeper/zookeeper_fundamentals.html  
+zookeeper的选举机制：https://www.w3cschool.cn/zookeeper/zookeeper_leader_election.html  
+zookeeper的选举客户端调用实现：http://ifeve.com/zookeeper-leader/  
+利用zookeeper的临时顺序节点实现分布式锁：https://blog.csdn.net/lanjian056/article/details/89216058
 
-zookeeper的选举机制涉及到zookeeper中的以下基础功能：
+zookeeper的分布式锁实现涉及到zookeeper中的以下基础功能：
 * Znode的数据类型（主要用到临时节点，顺序节点）
 * Zookeeper的监视机制
 
@@ -15,7 +20,7 @@ Znode被分为持久节点（Persistent），顺序节点（sequential）和临�
 监视是一个简单的机制，使客户端收到关于Zookeeper集合中的更改的通知。客户端可以在读取特定的Znode时设置Watches。Watches会向注册的客户端发送该Node的任何更改通知。  
 Znode的更改是指：与该Znode相关的数据的修改或者该Znode子项的更改。只触发一次Watches。如果客户端想要再次通知，则必须通过另一个读取操作来设置Watches。当连接会话过期时，客户端将于服务器端断开连接，相关的Watches也将被删除。
 
-## Zookeeper选举
+## Zookeeper使用临时顺序节点实现分布式锁流程
 假设一个集群中有N个节点，leader选举的过程如下：
 * 所有节点申请创建相同路径的顺序，临时节点/app/leader_election/guid_
 * Zookeeper集合附加十位序列号到路径上，创建的Znode将是如下格式：  
@@ -28,7 +33,3 @@ Znode的更改是指：与该Znode相关的数据的修改或者该Znode子项�
 * 下一个在线的follower节点将检查是否存在其他具有最小数值的Znode。如果没有，那么他将承担leader的角色。否则，它找到的具有最小数值的Znode节点将成为leader节点
 * 类似的，所有其他的follower节点选举创建具有最小数值的Znode节点作为leader节点。
 
-参考文档：  
-zookeeper基础：https://www.w3cschool.cn/zookeeper/zookeeper_fundamentals.html  
-zookeeper的选举机制：https://www.w3cschool.cn/zookeeper/zookeeper_leader_election.html  
-zookeeper的选举客户端调用实现：http://ifeve.com/zookeeper-leader/
