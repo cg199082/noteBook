@@ -1,6 +1,8 @@
 # spring aop原理分析
 参考文档：  
 https://www.toutiao.com/a6689707033454707204/
+《Spring设计思想》AOP实现原理（基于JDK和基于CGLIB）：https://blog.csdn.net/luanlouis/article/details/51155821
+完全读懂Spring框架之AOP实现原理：https://my.oschina.net/guangshan/blog/1797461
 
 ## aop5大通知类型
 1. around advice
