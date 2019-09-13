@@ -1,6 +1,7 @@
 # spring IOC容器创建bean过程
 参考文档：  
 Spring IOC容器创建bean过程浅析：https://www.cnblogs.com/micrari/p/7354650.html
+Spring-bean的循环依赖以及解决方式：https://blog.csdn.net/u010853261/article/details/77940767
 
 # 背景
 spring框架本身非常庞大，源码阅读可以从spring IOC容器的实现一点点了解。然而即使是IOC容器，代码仍然是非常多的，短时间内全部精度完全不现实，本文对beanDefinition的加载解析，bean实例化的反射调用细节不再介绍，仅以初略的角度答题感受一下IOC容器创建bean的过程。
