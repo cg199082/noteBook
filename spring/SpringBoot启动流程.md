@@ -1,6 +1,7 @@
 # springBoot启动流程
 参考文档：  
-SpringBoot 应用程序启动过程探秘：https://juejin.im/post/5b8f05a5f265da43296c6102
+SpringBoot 应用程序启动过程探秘：https://juejin.im/post/5b8f05a5f265da43296c6102  
+SpringBoot原理浅析2-SpringApplication执行流程：https://www.jianshu.com/p/b73e73d2d120
 
 # 概述
 
