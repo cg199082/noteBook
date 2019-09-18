@@ -11,6 +11,7 @@ springParser调用过程：https://blog.csdn.net/u014723529/article/details/4195
 ![](./source/springBootrap.png)
 
 # 2. 自动配置流程
-参考文档：https://blog.csdn.net/liaokailin/article/details/49559951  
+参考文档：https://blog.csdn.net/liaokailin/article/details/49559951  .
+springboot 启动Tomcat流程：https://www.javazhiyin.com/37521.html
 
 ![](./source/springBoot-autoConfig.jpg)
