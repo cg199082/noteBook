@@ -1,4 +1,4 @@
-# 分布式锁的实现思路
+# redis分布式锁的实现思路
 
 # redis实现
 1. setnx + expiretime
