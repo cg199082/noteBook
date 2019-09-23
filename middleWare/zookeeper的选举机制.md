@@ -1,6 +1,6 @@
 # zookeeper的选举机制
 参考文档：  
-Zookeeper崩溃恢复过程(Leader选举)：https://blog.csdn.net/weixin_30268071/article/details/95118843
+Zookeeper崩溃恢复过程(Leader选举)：https://blog.csdn.net/weixin_30268071/article/details/95118843  
 理解zookeeper选举机制：https://cloud.tencent.com/developer/article/1084681
 
 # 崩溃恢复
