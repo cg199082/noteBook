@@ -1,4 +1,8 @@
 # ElasticSearch框架内部原理
+参考文档：  
+https://www.cnblogs.com/dreamroute/p/8484457.html  
+http://www.uml.org.cn/sjjm/2015090110.asp
+
 ## 1. 如何实现快速索引
 ElasticSearch是通过Luncene的倒排索引技术实现比关系型数据库更快的过滤效果的。特别是它对多条件的过滤支持的非常好，比如年龄在18到30之间，性别是女性这样的组合查询。为什么倒排索引的速度比B-tree的速度快呢？  
 笼统的说b-tree索引是为了写入优化的索引结构。当我们不需要支持快速更新的时候，可以用预先排序等方式换取更小的存储空间，更快的检索速度等好处，其代价是更新慢。要进一步深入的话，还是要看一下Luncene的倒排索引是怎样构成的。 
@@ -122,8 +126,3 @@ Roaring Bitmaps的思路是将Posting List按照65535为界限进行分块，结
 
 在存储的过程中，无论父文档还是子文档，对于Luncene来说都是文档都会有文档Id。但对于嵌套文档来说，可以保存起子文档和父文档的文档Id是连续的，而且父文档总是最后一个。有这样一个排序性作为保障，那么有一个所有父文档的Posting List就可以跟踪所有的父子关系。也可以很容易的在父子文档之间做转换。把父子关系也理解为一个Filter，那么查询时检索的时候不过是又AND了另一个Filter而已。前面我们已经看到了ElasticSearch可以非常高效的处理多个Filter的情况，充分利用了底层的索引。  
 使用了嵌套文档之后，对于Term的Posting List只需要保存父文档的DocId就可以了，可以保存所有的数据点的Doc Id要上很多。如果我们可以在一个父文档里塞入50个嵌套文档，那么Posting List可以变成之前的1/50大小。
-
-
-参考文档：  
-https://www.cnblogs.com/dreamroute/p/8484457.html  
-http://www.uml.org.cn/sjjm/2015090110.asp
