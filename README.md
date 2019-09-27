@@ -9,3 +9,6 @@
 可以推算出每天的PV量大致为：8640000pv
 
 待整理：cap,spring cloud,tcp，AQS所有扩展总结
+
+正版中国：https://getitfree.cn/?mref=64372
+艾维商城：https://www.aiviy.com/
