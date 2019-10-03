@@ -1,0 +1,30 @@
+# Sharding-JDBC使用
+
+参考文档：  
+分库分表开源中间件之Sharding-JDBC使用体验：https://www.jianshu.com/p/2ca99c4e70c2
+
+# 分库分表初始化过程
+在微服务user-service的主类文件中，通过@import注解先后引入以下两个配置类：  
+1. 用户服务自定义配置类：UserServiceConfiguration.class,
+2. 多数据源初始化配置类：MultipleDataSourceConfiguration.class
+
+# 用户服务自定义配置类UserServiceConfiguration
+在该类中实现以下三个操作：
+1. 通过@bean注解初始化一个由DataSourceName构成的list<String>，使用该list来初始化一个MultipleDataSource
+2. 通过@bean注解注解初始化一个ShardingDataSourceFactoryBean，在ShardingDataSourceFactoryBean内完成分库名，分表名，以及分库分表策略的组装工作。
+3. 完成ShardingDataSourceCollector，在该对象中完成分表字段key和对应数据库的映射
+
+# 多数据源初始化配置类MultipleDataSourceConfiguration.class
+在该类中继承了BeanDefinitionRegistryPostProcessor, ApplicationContextAware两个接口
+在该类中完成了以下工作： 
+1. 实现在该类中继承了BeanDefinitionRegistryPostProcessor接口的postProcessBeanDefinitionRegistry方法
+在该实现逻辑中完成了
+2. 初始化自定义数据源注解拦截器DataSourceInterceptor
+3. 初始化动态数据源dynamicDataSource（继承与AbstractRoutingDataSource）
+其内部逻辑只是实现了以下工作：  
+    1. 初始化默认数据源
+    2. 将普通数据源的key->value映射和分库分表数据源的key->value全部添加到同一个map中返回
+4. 通过第3步组装好的动态数据源dynamicDataSource来初始化平台事务管理对象PlatformTransactionManager
+5. 通过第3步组装好的动态数据源dynamicDataSource和自定义的mybatisInterceptor来初始化mybatis的sqlsession工厂类对象SqlSessionFactory
+6. 通过第5步组装好的sqlsession工厂类对象SqlSessionFactory来初始化sql查询模板对象SqlSessionTemplate
+

@@ -92,3 +92,5 @@ boundSql提供了三个主要的属性：parameterMapping，parameterObject和sq
     4. 如果传递多个参数并且有@param注解是，mybatis会把他们封装成一个key，value的map对象，其格式大致如下：{“key1”：“aa”, “key2”："bb", “key3”："cc".......}
 * ParameterMapping：他是一个list，每个元素都是parametermapping的对象。这个对象包含了我们的以下参数属性：属性，名称，表达式，JavaType，JDBCType，typehandler等信息，我们一般不需要去改变它，通过他可以实现参数和sql的结合，以便preparedStatement能够通过它找到parameterObject对象的属性并设置参数，使得程序正常运行。
 * sql：它对应的就是一条sql语句，大多数情况下不需要修改，只有在插件的情况下，需要进行改写。
+
+
