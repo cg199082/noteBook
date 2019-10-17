@@ -12,3 +12,4 @@
 
 正版中国：https://getitfree.cn/?mref=64372
 艾维商城：https://www.aiviy.com/
+vuex经典入门文档：https://www.cnblogs.com/m2maomao/p/9954640.html
