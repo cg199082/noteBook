@@ -10,3 +10,4 @@ TCP/IP四层模型与OSI参考模型：https://www.cnblogs.com/gdayq/p/5797645.h
 DNS原理及其解析过程：https://www.cnblogs.com/gopark/p/8430916.html  
 数据链路层之以太网协议：https://blog.csdn.net/liuchenxia8/article/details/80598176  
 图解TCP/IP读书笔记之五——路由协议：https://blog.csdn.net/weixin_38719347/article/details/81805799  
+Debian下MySQL安装经验分享：https://www.jianshu.com/p/3bc81376a955
